@@ -6,7 +6,7 @@ def screen_text_for_pii(text: str) -> bool:
     messages = [
         {
             "role": "system",
-            "content": f"""
+            "content": """
             You can only respond with the word "True" or "False", where your answer indicates whether the text in the user's message contains PII.
             Do not explain your answer, and do not use punctuation.
             Your task is to identify whether the text extracted from your company files
