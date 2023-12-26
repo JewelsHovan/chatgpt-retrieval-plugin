@@ -302,9 +302,8 @@ class MilvusDataStore(DataStore):
                 # Examine each chunk in the chunklist
                 for chunk in chunk_list:
                     # Extract data from the chunk
-                    list_of_data = self._get_values(chunk)
                     # Check if the data is valid
-                    if list_of_data is not None:
+                    if (list_of_data := self._get_values(chunk)) is not None:
                         # Append each field to the insert_data
                         for x in range(len(insert_data)):
                             insert_data[x].append(list_of_data[x])
@@ -362,9 +361,8 @@ class MilvusDataStore(DataStore):
         offset = 1 if self._schema_ver == "V1" else 0
         for key, _, default in self._get_schema()[offset:]:
             # Grab the data at the key and default to our defaults set in init
-            x = values.get(key) or default
             # If one of our required fields is missing, ignore the entire entry
-            if x is Required:
+            if (x := values.get(key) or default) is Required:
                 self._print_info("Chunk " + values["id"] + " missing " + key + " skipping")
                 return None
             # Add the corresponding value if it passes the tests

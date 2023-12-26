@@ -193,9 +193,8 @@ class PineconeDataStore(DataStore):
                 raise e
 
         # Convert the metadata filter object to a dict with pinecone filter expressions
-        pinecone_filter = self._get_pinecone_filter(filter)
         # Delete vectors that match the filter from the index if the filter is not empty
-        if pinecone_filter != {}:
+        if (pinecone_filter := self._get_pinecone_filter(filter)) != {}:
             try:
                 print(f"Deleting vectors with filter {pinecone_filter}")
                 self.index.delete(filter=pinecone_filter)
