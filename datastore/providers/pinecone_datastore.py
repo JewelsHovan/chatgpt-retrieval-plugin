@@ -99,7 +99,7 @@ class PineconeDataStore(DataStore):
             try:
                 print(f"Upserting batch of size {len(batch)}")
                 self.index.upsert(vectors=batch)
-                print(f"Upserted batch successfully")
+                print("Upserted batch successfully")
             except Exception as e:
                 print(f"Error upserting batch: {e}")
                 raise e
@@ -184,9 +184,9 @@ class PineconeDataStore(DataStore):
         # Delete all vectors from the index if delete_all is True
         if delete_all:
             try:
-                print(f"Deleting all vectors from index")
+                print("Deleting all vectors from index")
                 self.index.delete(delete_all=True)
-                print(f"Deleted all vectors successfully")
+                print("Deleted all vectors successfully")
                 return True
             except Exception as e:
                 print(f"Error deleting all vectors: {e}")
@@ -199,7 +199,7 @@ class PineconeDataStore(DataStore):
             try:
                 print(f"Deleting vectors with filter {pinecone_filter}")
                 self.index.delete(filter=pinecone_filter)
-                print(f"Deleted vectors with filter successfully")
+                print("Deleted vectors with filter successfully")
             except Exception as e:
                 print(f"Error deleting vectors with filter: {e}")
                 raise e
@@ -210,7 +210,7 @@ class PineconeDataStore(DataStore):
                 print(f"Deleting vectors with ids {ids}")
                 pinecone_filter = {"document_id": {"$in": ids}}
                 self.index.delete(filter=pinecone_filter)  # type: ignore
-                print(f"Deleted vectors with ids successfully")
+                print("Deleted vectors with ids successfully")
             except Exception as e:
                 print(f"Error deleting vectors with ids: {e}")
                 raise e

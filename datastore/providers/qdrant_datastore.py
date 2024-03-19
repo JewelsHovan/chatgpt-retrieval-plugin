@@ -257,16 +257,16 @@ class QdrantDataStore(DataStore):
                 raise ValueError(
                     f"Collection '{self.collection_name}' already exists in Qdrant, "
                     f"but it is configured with a similarity '{current_distance.name}'. "
-                    f"If you want to use that collection, but with a different "
-                    f"similarity, please set `recreate_collection=True` argument."
+                    "If you want to use that collection, but with a different "
+                    "similarity, please set `recreate_collection=True` argument."
                 )
 
             if current_vector_size != vector_size:
                 raise ValueError(
                     f"Collection '{self.collection_name}' already exists in Qdrant, "
                     f"but it is configured with a vector size '{current_vector_size}'. "
-                    f"If you want to use that collection, but with a different "
-                    f"vector size, please set `recreate_collection=True` argument."
+                    "If you want to use that collection, but with a different "
+                    "vector size, please set `recreate_collection=True` argument."
                 )
         except (UnexpectedResponse, _InactiveRpcError):
             self._recreate_collection(distance, vector_size)
